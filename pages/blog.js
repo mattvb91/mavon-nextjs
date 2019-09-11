@@ -16,14 +16,24 @@ const TileRow = styled(Row)`
     border-bottom: 1px solid lightgray;
 `;
 
+const CenterCol = styled(Col)`
+  font-size: 20px;
+  color: #B0BEC5;
+  font-weight: 10;
+`;
+
+const Description = styled.p`
+    padding-top: 20px;
+    padding-bottom: 20px;
+`
+
 function Blog(props) {
     return (
         <>
-            <h1>Blog</h1>
             {props.articles.length ? props.articles.map((article) => {
                 return (
                     <TileRow key={article.id}>
-                        <Col>
+                        <Col xs={12}>
                             <Row>
                                 <h2>
                                     <Link href={`/blog/${article.id}/${article.slug}`}>
@@ -35,7 +45,9 @@ function Blog(props) {
                                 <TimeAgo date={article.published_timestamp} />
                             </Row>
                             <Row>
-                                {article.description}
+                                <Description>
+                                    {article.description}
+                                </Description>
                             </Row>
                             <Row>
                                 Tags: {article.tag_list.map((tag) => {
@@ -47,7 +59,12 @@ function Blog(props) {
                         </Col>
                     </TileRow>
                 )
-            }) : <p>Nothing here yet</p>
+            }) :
+                <Row style={{ height: '100%' }} center="xs" middle="xs">
+                    <CenterCol>
+                        Nothing here yet
+                    </CenterCol>
+                </Row>
             }
         </>
     )
