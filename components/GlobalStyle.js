@@ -14,6 +14,11 @@ const GlobalStyle = createGlobalStyle`
   #__next {
       height: 100%;
   }
+
+  a {
+    text-decoration: none;
+  }
+
 `
 
 export default GlobalStyle;
