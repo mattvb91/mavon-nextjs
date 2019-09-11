@@ -5,10 +5,15 @@ import styled from 'styled-components';
 import TimeAgo from 'react-timeago'
 
 const TileRow = styled(Row)`
+
+    h2 {
+        font-weight: bold;
+    }
+
     min-height: 100px;
     padding: 10px;
-    margin-top: 10px;
-    box-shadow: 1px 1px 5px 1px lightgray;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgray;
 `;
 
 function Blog(props) {
@@ -21,7 +26,7 @@ function Blog(props) {
                         <Col>
                             <Row>
                                 <h2>
-                                    <Link href={`/blog/${article.slug}`}>
+                                    <Link href={`/blog/${article.id}/${article.slug}`}>
                                         <a>{article.title}</a>
                                     </Link>
                                 </h2>
@@ -30,9 +35,7 @@ function Blog(props) {
                                 <TimeAgo date={article.published_timestamp} />
                             </Row>
                             <Row>
-                                <p>
-                                    {article.description}
-                                </p>
+                                {article.description}
                             </Row>
                             <Row>
                                 Tags: {article.tag_list.map((tag) => {
