@@ -16,21 +16,47 @@ const HeaderPane = styled(Grid)`
 const HeaderLink = styled.a`
 `
 
+const ActiveRow = styled(Row)`
+    background-color: grey;
+    height: ${props => {
+        if (props.active) {
+            return '1px'
+        }
+        return '0px'
+    }};
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+`
+
 function Header(props) {
     return (
         <Headroom>
             <HeaderFrame>
                 <HeaderPane>
-                    <Row style={{ height: '100%', alignContent: 'center'}}>
-                        <Col>
-                            <Link href='/'>
-                                <HeaderLink>Home</HeaderLink>
-                            </Link>
+                    <Row style={{ height: '100%', alignContent: 'center' }}>
+                        <Col style={{ height: '100%', position: 'relative' }}>
+                            <Row middle="xs" style={{ height: '100%' }}>
+                                <Col>
+                                    <Link href='/'>
+                                        <HeaderLink>
+                                            <b>Mavon.ie</b>
+                                        </HeaderLink>
+                                    </Link>
+                                </Col>
+                            </Row>
+                            <ActiveRow active />
                         </Col>
                         <Col>
-                            <Link href='/blog'>
-                                <HeaderLink>Blog</HeaderLink>
-                            </Link>
+                            <Row middle="xs" style={{ height: '100%' }}>
+                                <Col>
+                                    <Link href='/blog'>
+                                        <HeaderLink>Blog</HeaderLink>
+                                    </Link>
+                                </Col>
+                            </Row>
+                            <ActiveRow />
                         </Col>
                     </Row>
                 </HeaderPane>
