@@ -2,6 +2,7 @@ import Link from "next/link";
 import Headroom from 'react-headroom';
 import styled from 'styled-components';
 import { Grid, Col, Row } from 'react-styled-flexboxgrid';
+import { withRouter } from 'next/router'
 
 const HeaderFrame = styled.div`
     height: 55px;
@@ -28,9 +29,11 @@ const ActiveRow = styled(Row)`
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
+    box-shadow: 0px -1px 5px grey;
 `
 
 function Header(props) {
+
     return (
         <Headroom>
             <HeaderFrame>
@@ -46,7 +49,7 @@ function Header(props) {
                                     </Link>
                                 </Col>
                             </Row>
-                            <ActiveRow active />
+                            <ActiveRow active={props.router.pathname === '/'} />
                         </Col>
                         <Col>
                             <Row middle="xs" style={{ height: '100%' }}>
@@ -56,7 +59,7 @@ function Header(props) {
                                     </Link>
                                 </Col>
                             </Row>
-                            <ActiveRow />
+                            <ActiveRow active={props.router.pathname === '/blog'} />
                         </Col>
                     </Row>
                 </HeaderPane>
@@ -65,4 +68,4 @@ function Header(props) {
     );
 }
 
-export default Header;
+export default withRouter(Header);
