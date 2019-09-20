@@ -9,6 +9,19 @@ import styled from 'styled-components';
 const GithubActivityTile = styled(Row)`
   margin-top: 10px;
   border-bottom: 1px solid lightgray;
+  
+  a {
+    color: #0366d6;
+  }
+
+  a:visited {
+    color: #0366d6;
+  }
+
+  p {
+    padding-right: 5px;
+  }
+
 `
 
 const Ago = styled(TimeAgo)`
@@ -51,18 +64,19 @@ function Home(props) {
   return (
     <>
       <Row style={{ height: '100%' }} center="xs" middle="xs">
-        My latest github Activity
+        <b>My latest github Activity</b>
     </Row>
-      {props.github.splice(0, 10).map((item) => {
+      {props.github.map((item) => {
         let event = parseGithubEvent(item);
         return (
           <GithubActivityTile key={item.id} middle="xs">
-            <Col xs={1}>
+            <Col xs={2} style={{textAlign: 'center'}}>
               {event.icon ? <FontAwesomeIcon icon={event.icon} /> : null}
             </Col>
-            <Col xs={11}>
+            <Col xs={10}>
               <Row>
-                {event.description}<a target="_blank" href={`https://github.com/${item.repo.name}`}>{item.repo.name}</a>
+                <p>{event.description}</p>
+                <a target="_blank" href={`https://github.com/${item.repo.name}`}>{item.repo.name}</a>
               </Row>
               <Row>
                 <Ago date={item.created_at} />
@@ -76,7 +90,7 @@ function Home(props) {
 }
 
 Home.getInitialProps = async function (ctx) {
-  const data = await (fetch('https://api.github.com/users/mattvb91/events'))
+  const data = await (fetch('https://api.github.com/users/mattvb91/events?per_page=10'))
   let json = null;
 
   //Implement authorized header at later stage
