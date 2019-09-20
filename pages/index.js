@@ -32,8 +32,6 @@ const Ago = styled(TimeAgo)`
 
 function Home(props) {
 
-  console.log(props);
-
   function parseGithubEvent(event) {
     switch (event.type) {
       case 'PushEvent':
