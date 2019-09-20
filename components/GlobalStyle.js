@@ -5,8 +5,9 @@ const GlobalStyle = createGlobalStyle`
     ${reset}
 
     body,html {
-      font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+      font-family:'Open Sans',Sans-serif;
       font-size: 16px;
+      line-height: 20px;
       margin: 0px;
       height:100%;
   }
@@ -17,10 +18,23 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    color: grey;
+  }
+
+  a:visited {
+    color: grey;
   }
 
   b {
     font-weight: bold;
+  }
+
+  h2 {
+    padding-top: 5px;
   }
 
 `

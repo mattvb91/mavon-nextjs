@@ -1,8 +1,10 @@
+import { faCalendar, faTag } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fetch from "isomorphic-unfetch";
-import Link from "next/link"
+import Link from "next/link";
 import { Col, Row } from 'react-styled-flexboxgrid';
+import TimeAgo from 'react-timeago';
 import styled from 'styled-components';
-import TimeAgo from 'react-timeago'
 
 const TileRow = styled(Row)`
 
@@ -27,6 +29,16 @@ const Description = styled.p`
     padding-bottom: 20px;
 `
 
+const Tag = styled(Col)`
+    font-size: 12px;
+    color: #797979;
+`
+
+const TagIcon = styled(FontAwesomeIcon)`
+    padding-right: 5px;
+    align-self: center;
+`
+
 function Blog(props) {
     return (
         <>
@@ -34,6 +46,10 @@ function Blog(props) {
                 return (
                     <TileRow key={article.id}>
                         <Col xs={12}>
+                            <Row style={{ fontSize: '12px' }}>
+                                <TagIcon icon={faCalendar} />
+                                <TimeAgo date={article.published_timestamp} />
+                            </Row>
                             <Row>
                                 <h2>
                                     <Link href={`/blog/${article.id}/${article.slug}`}>
@@ -42,17 +58,16 @@ function Blog(props) {
                                 </h2>
                             </Row>
                             <Row>
-                                <TimeAgo date={article.published_timestamp} />
-                            </Row>
-                            <Row>
                                 <Description>
                                     {article.description}
                                 </Description>
                             </Row>
                             <Row>
-                                Tags: {article.tag_list.map((tag) => {
+                                {article.tag_list.map((tag) => {
                                     return (
-                                        <div key={tag}>{tag}</div>
+                                        <Tag>
+                                            <TagIcon icon={faTag} />{tag}
+                                        </Tag>
                                     )
                                 })}
                             </Row>
@@ -60,7 +75,7 @@ function Blog(props) {
                     </TileRow>
                 )
             }) :
-                <Row style={{ height: '100%' }} center="xs" middle="xs">
+                <Row style={{ height: '100%', marginTop: '100px' }} center="xs" middle="xs">
                     <CenterCol>
                         Nothing here yet
                     </CenterCol>
