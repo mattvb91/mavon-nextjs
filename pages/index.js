@@ -5,6 +5,7 @@ import React from 'react';
 import { Row, Col } from 'react-styled-flexboxgrid';
 import TimeAgo from 'react-timeago';
 import styled from 'styled-components';
+import absoluteUrl from 'next-absolute-url'
 
 const GithubActivityTile = styled(Row)`
   margin-top: 10px;
@@ -87,11 +88,12 @@ function Home(props) {
   );
 }
 
-Home.getInitialProps = async function (ctx) {
-  const data = await (fetch('https://api.github.com/users/mattvb91/events?per_page=10'))
+Home.getInitialProps = async function ({req}) {
+
+  const { protocol, host } = absoluteUrl(req)
+  const data = await (fetch(`${protocol}//${host}/api/github`))
   let json = null;
 
-  //Implement authorized header at later stage
   if (data.status == 200) {
     json = await data.json();
   } else {
