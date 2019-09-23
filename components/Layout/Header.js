@@ -61,6 +61,16 @@ function Header(props) {
                             </Row>
                             <ActiveRow active={props.router.pathname === '/blog'} />
                         </Col>
+                        <Col>
+                            <Row middle="xs" style={{ height: '100%' }}>
+                                <Col>
+                                    <Link href='/resume'>
+                                        <HeaderLink>Resume</HeaderLink>
+                                    </Link>
+                                </Col>
+                            </Row>
+                            <ActiveRow active={props.router.pathname === '/resume'} />
+                        </Col>
                     </Row>
                 </HeaderPane>
             </HeaderFrame>

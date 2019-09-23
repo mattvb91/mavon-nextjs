@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Col, Row } from 'react-styled-flexboxgrid';
-import { faGithubSquare, faYoutubeSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SocialLinks from './SocialLinks';
 
 const FooterElement = styled(Row)`
     height: 100px;
@@ -11,15 +10,6 @@ const FooterElement = styled(Row)`
     bottom: 0;
     width: 100%;
     align-content: center;
-`
-const Icon = styled(FontAwesomeIcon)`
-    padding: 5px;
-    font-size: 30px;
-    color: grey;
-
-    :hover {
-        color: black;
-    }
 `
 
 function Footer(props) {
@@ -31,13 +21,7 @@ function Footer(props) {
                         Developed with React & Next.js
                     </Col>
                 </Row>
-                <Row xs={12} center="xs">
-                    <Col>
-                        <Icon icon={faGithubSquare} />
-                        <Icon icon={faLinkedin} />
-                        <Icon icon={faYoutubeSquare} />
-                    </Col>
-                </Row>
+                <SocialLinks/>
             </Col>
         </FooterElement>
     )
