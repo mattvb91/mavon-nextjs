@@ -1,4 +1,5 @@
 import fetch from "isomorphic-unfetch";
+import Head from "next/head";
 import styled from 'styled-components';
 
 const ArticleElement = styled.div`
@@ -21,11 +22,20 @@ const ArticleElement = styled.div`
 `
 
 function Article(props) {
+
+    console.log(props);
     return (
-        <ArticleElement>
-            <h1>{props.article.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: props.article.body_html }} />
-        </ArticleElement>
+        <>
+            <Head>
+                <title>{props.article.title}</title>
+                <meta name="Description" content={props.article.title}/>
+                <meta name="keywords" content={`${props.article.title}, ${props.article.tag_list}`}/>
+            </Head>
+            <ArticleElement>
+                <h1>{props.article.title}</h1>
+                <div dangerouslySetInnerHTML={{ __html: props.article.body_html }} />
+            </ArticleElement>
+        </>
     );
 }
 
